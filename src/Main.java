@@ -26,6 +26,9 @@ public class Main {
 
 	static BufferedImage output = new BufferedImage((int)XRES,(int)YRES,BufferedImage.TYPE_INT_RGB);
 
+	static final Complex ONE = new Complex(1,0);
+	static final Complex I = new Complex(0,1);
+	
 	public static void main(String[] args) {
 
 		double xbase = (XMAX - XMIN) / XRES;
@@ -40,12 +43,12 @@ public class Main {
 
 				Complex Z = new Complex((x-originx)*(double)xbase,(y-originy)*(double)ybase);
 
-				Complex I = Z.add(new Complex(1,0));
-				Complex J = Z.add(new Complex(-1,0));
-				Complex K = Z.add(new Complex(0, 1));
-				Complex L = Z.add(new Complex(0,-1));
+				Complex J = Z.add(new Complex(1,0));
+				Complex K = Z.add(new Complex(-1,0));
+				Complex L = Z.add(new Complex(0, 1));
+				Complex M = Z.add(new Complex(0,-1));
 				
-				Complex W = new Complex(1,0).divide(Z);
+				Complex W = I.multiply(Z);
 
 				double s = MoreMath.logAB(2.0, W.abs());
 				if(s > 0) s = s%1;
