@@ -41,9 +41,11 @@ public class Main {
 				Complex Z = new Complex((x-originx)*(double)xbase,(y-originy)*(double)ybase);
 
 				Complex I = Z.add(new Complex(1,0));
-				Complex J = Z.add(new Complex(0,-1));
+				Complex J = Z.add(new Complex(-1,0));
+				Complex K = Z.add(new Complex(0, 1));
+				Complex L = Z.add(new Complex(0,-1));
 				
-				Complex W = I.multiply(J).divide(Z);
+				Complex W = new Complex(1,0).divide(Z);
 
 				double s = MoreMath.logAB(2.0, W.abs());
 				if(s > 0) s = s%1;
