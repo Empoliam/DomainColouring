@@ -37,7 +37,7 @@ public class Main {
 		double originx = XRES / 2;
 		double originy = YRES / 2;
 
-		for (int frame = 0; frame < 90; frame++) {
+		for (int frame = 0; frame < 61; frame++) {
 
 			for (int x = 0; x < XRES; x++) {
 
@@ -45,10 +45,10 @@ public class Main {
 
 					Complex Z = new Complex((x - originx) * (double) xbase, (y - originy) * (double) ybase);
 
-					Complex J = Z.add(new Complex(0.0+(frame/90.0), 0));
-					Complex K = Z.add(new Complex(0.0-(frame/90.0), 0));
+					Complex J = Z.add(new Complex(-1.0,0.0));
+					Complex K = Z.add(new Complex(1.0,0.0));
 
-					Complex W = J.multiply(K);
+					Complex W = (J.pow(-1+(frame/60.0))).multiply(K.pow(-1+(frame/60.0))).multiply(Z.pow(1-(frame/60.0)));
 
 					double s = MoreMath.logAB(2.0, W.abs());
 					if (s > 0)
@@ -81,7 +81,7 @@ public class Main {
 				}
 
 			}
-			File f = new File("output" + frame  + ".png");
+			File f = new File("output" + (frame + 504)  + ".png");
 			try {
 				ImageIO.write(output, "PNG", f);
 			} catch (IOException e) {
@@ -89,7 +89,7 @@ public class Main {
 			};
 			
 		}
-
+		
 	}
 
 }
